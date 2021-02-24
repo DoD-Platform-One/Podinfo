@@ -1,0 +1,29 @@
+{{- if .Values.istio.enabled -}}
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: {{ template "podinfo.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels:
+    app.kubernetes.io/name: {{ template "podinfo.fullname" . }}
+    helm.sh/chart: {{ include "podinfo.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    app.kubernetes.io/part-of: podinfo
+    app.kubernetes.io/component: "demo"
+spec:
+  gateways:
+  {{- range .Values.istio.podinfo.gateways }}
+    - {{ . }}
+  {{- end }}
+  hosts:
+  {{- range .Values.istio.podinfo.hosts }}
+    - {{ tpl . $}}
+  {{- end }}
+  http:
+    - route:
+        - destination:
+            port:
+              number: {{ .Values.service.externalPort }}
+            host: {{ template "podinfo.fullname" . }}
+{{- end }}

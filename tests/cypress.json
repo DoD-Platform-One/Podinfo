@@ -1,0 +1,9 @@
+{
+ 
+  "pluginsFile": false,
+  "supportFile": false,
+  "fixturesFolder": false,
+  "env": {
+    "url": "podinfo.bigbang.dev"
+  }
+}
