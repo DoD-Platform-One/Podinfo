@@ -4,6 +4,7 @@ metadata:
   name: {{ template "podinfo.fullname" . }}
   labels:
     {{- include "podinfo.labels" . | nindent 4 }}
+
 spec:
   {{- if not .Values.hpa.enabled }}
   replicas: {{ .Values.replicaCount }}
@@ -19,6 +20,7 @@ spec:
     metadata:
       labels:
         {{- include "podinfo.selectorLabels" . | nindent 8 }}
+        # protect: keycloak
       annotations:
         prometheus.io/scrape: "true"
         prometheus.io/port: "{{ .Values.service.httpPort }}"
@@ -67,7 +69,7 @@ spec:
             {{- if .Values.cache }}
             - --cache-server={{ .Values.cache }}
             {{- else if .Values.redis.enabled }}
-            - --cache-server={{ template "podinfo.fullname" . }}:6379
+            - --cache-server={{ template "podinfo.fullname" . }}-redis:6379
             {{- end }}
             - --level={{ .Values.logLevel }}
             - --random-delay={{ .Values.faults.delay }}
