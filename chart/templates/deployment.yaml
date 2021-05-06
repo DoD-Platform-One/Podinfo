@@ -16,7 +16,6 @@ spec:
   selector:
     matchLabels:
       {{- include "podinfo.selectorLabels" . | nindent 6 }}
-      protect: keycloak
   template:
     metadata:
       labels:
