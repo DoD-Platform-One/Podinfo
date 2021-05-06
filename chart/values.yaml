@@ -139,5 +139,4 @@ tolerations: []
 
 affinity: {}
 
-podAnnotations: 
-  sidecar.istio.io/proxyImage: registry1.dso.mil/ironbank/opensource/istio-1.7/proxyv2-1.7:1.7.7
+podAnnotations: {}
