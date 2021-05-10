@@ -82,6 +82,7 @@ Parameter | Default | Description
 `tolerations` | `[]` | List of node taints to tolerate
 `affinity` | `None` | Node/pod affinities
 `podAnnotations` | `{}` | Pod annotations
+`podLabels` | `{}` | Pod labels
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 
