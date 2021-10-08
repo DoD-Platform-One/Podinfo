@@ -1,7 +1,11 @@
 # Podinfo
 
-Podinfo is a tiny web application made with Go 
+Podinfo is a tiny web application made with Go
 that showcases best practices of running microservices in Kubernetes.
+
+Podinfo is used by CNCF projects like [Flux](https://github.com/fluxcd/flux2)
+and [Flagger](https://github.com/fluxcd/flagger)
+for end-to-end testing and workshops.
 
 ## Installing the Chart
 
@@ -10,7 +14,7 @@ To install the chart with the release name `my-release`:
 ```console
 $ helm repo add podinfo https://stefanprodan.github.io/podinfo
 
-$ helm upgrade -i my-release podinfo/podinfo 
+$ helm upgrade -i my-release podinfo/podinfo
 ```
 
 The command deploys podinfo on the Kubernetes cluster in the default namespace.
@@ -33,7 +37,7 @@ The following tables lists the configurable parameters of the podinfo chart and 
 Parameter | Default | Description
 --- | --- | ---
 `replicaCount` | `1` | Desired number of pods
-`logLevel` | `info` | Log level: `debug`, `info`, `warn`, `error`, `flat` or `panic`
+`logLevel` | `info` | Log level: `debug`, `info`, `warn`, `error`
 `backend` | `None` | Echo backend URL
 `backends` | `[]` | Array of echo backend URLs
 `cache` | `None` | Redis address in the format `<host>:<port>`
@@ -47,7 +51,6 @@ Parameter | Default | Description
 `faults.unready` | `false` | When set, the ready state is never reached
 `faults.testFail` | `false` | When set, a helm test is included which always fails
 `faults.testTimeout` | `false` | When set, a helm test is included which always times out
-`h2c.enabled` | `false` | Allow upgrading to h2c
 `image.repository` | `stefanprodan/podinfo` | Image repository
 `image.tag` | `<VERSION>` | Image tag
 `image.pullPolicy` | `IfNotPresent` | Image pull policy
@@ -59,6 +62,7 @@ Parameter | Default | Description
 `service.grpcPort` | `9999` | ClusterIP gPRC port
 `service.grpcService` | `podinfo` | gPRC service name
 `service.nodePort` | `31198` | NodePort for the HTTP endpoint
+`h2c.enabled` | `false` | Allow upgrading to h2c (non-TLS version of HTTP/2)
 `hpa.enabled` | `false` | Enables the Kubernetes HPA
 `hpa.maxReplicas` | `10` | Maximum amount of pods
 `hpa.cpu` | `None` | Target CPU usage per pod
@@ -66,12 +70,14 @@ Parameter | Default | Description
 `hpa.requests` | `None` | Target HTTP requests per second per pod
 `serviceAccount.enabled` | `false` | Whether a service account should be created
 `serviceAccount.name` | `None` | The name of the service account to use, if not set and create is true, a name is generated using the fullname template
+`securityContext` | `{}` | The security context to be set on the podinfo container
 `linkerd.profile.enabled` | `false` | Create Linkerd service profile
 `serviceMonitor.enabled` | `false` | Whether a Prometheus Operator service monitor should be created
 `serviceMonitor.interval` | `15s` | Prometheus scraping interval
+`serviceMonitor.additionalLabels` | `{}` | Add additional labels to the service monitor |
 `ingress.enabled` | `false` | Enables Ingress
+`ingress.className ` | `""` | Use ingressClassName
 `ingress.annotations` | `{}` | Ingress annotations
-`ingress.path` | `/*` | Ingress path
 `ingress.hosts` | `[]` | Ingress accepted hosts
 `ingress.tls` | `[]` | Ingress TLS configuration
 `resources.requests.cpu` | `1m` | Pod CPU request
@@ -82,7 +88,6 @@ Parameter | Default | Description
 `tolerations` | `[]` | List of node taints to tolerate
 `affinity` | `None` | Node/pod affinities
 `podAnnotations` | `{}` | Pod annotations
-`podLabels` | `{}` | Pod labels
 
 Specify each parameter using the `--set key=value[,key=value]` argument to `helm install`. For example,
 

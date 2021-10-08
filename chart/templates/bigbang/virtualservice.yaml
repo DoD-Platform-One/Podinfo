@@ -1,29 +1,26 @@
-{{- if .Values.istio.enabled -}}
+{{- $pkg := "podinfo" }}
+{{- if and .Values.istio.enabled (get .Values.istio $pkg).enabled }}
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
   name: {{ template "podinfo.fullname" . }}
   namespace: {{ .Release.Namespace }}
   labels:
-    app.kubernetes.io/name: {{ template "podinfo.fullname" . }}
-    helm.sh/chart: {{ include "podinfo.chart" . }}
+    {{- include (printf "%s.labels" $pkg) . | nindent 4 }}
     app.kubernetes.io/instance: {{ .Release.Name }}
-    app.kubernetes.io/managed-by: {{ .Release.Service }}
-    app.kubernetes.io/part-of: podinfo
-    app.kubernetes.io/component: "demo"
 spec:
   gateways:
-  {{- range .Values.istio.podinfo.gateways }}
+  {{- range (get .Values.istio $pkg).gateways }}
     - {{ . }}
   {{- end }}
   hosts:
-  {{- range .Values.istio.podinfo.hosts }}
+  {{- range (get .Values.istio $pkg).hosts }}
     - {{ tpl . $}}
   {{- end }}
   http:
-    - route:
-        - destination:
-            port:
-              number: {{ .Values.service.externalPort }}
-            host: {{ template "podinfo.fullname" . }}
+  - route:
+    - destination:
+        port:
+          number: {{ .Values.service.externalPort }}
+        host: {{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local
 {{- end }}
