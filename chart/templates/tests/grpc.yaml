@@ -11,9 +11,13 @@ metadata:
     linkerd.io/inject: disabled
     appmesh.k8s.aws/sidecarInjectorWebhook: disabled
 spec:
+  {{- /* Added by Big Bang */ -}}
+  {{- if .Values.serviceAccount.enabled }}
+  serviceAccountName: {{ template "podinfo.serviceAccountName" . }}
+  {{- end }}
   containers:
     - name: grpc-health-probe
-      image: stefanprodan/grpc_health_probe:v0.3.0
+      image: registry.dso.mil/platform-one/big-bang/apps/sandbox/podinfo/grpc_health_probe:v0.3.0
       command: ['grpc_health_probe']
       args:  ['-addr={{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}:{{ .Values.service.grpcPort }}']
   restartPolicy: Never
