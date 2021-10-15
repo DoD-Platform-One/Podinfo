@@ -148,6 +148,6 @@ istio:
   podinfo:
     enabled: true
     gateways:
-      - istio-system/main
+      - istio-system/public
     hosts:
       - podinfo.{{ .Values.domain }}
