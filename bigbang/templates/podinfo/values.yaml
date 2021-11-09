@@ -8,6 +8,8 @@ istio:
   podinfo:
     gateways:
     - istio-system/{{ default "public" .Values.podinfo.ingress.gateway }}
+serviceMonitor:
+  enabled: {{ .Values.monitoring.enabled }}
 {{- end }}
 
 {{- /* Create secret */ -}}
