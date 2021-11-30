@@ -1,6 +1,6 @@
 # podinfo
 
-![Version: 6.0.0-bb.1](https://img.shields.io/badge/Version-6.0.0--bb.1-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 6.0.0-bb.2](https://img.shields.io/badge/Version-6.0.0--bb.2-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -10,14 +10,16 @@ Podinfo Helm chart for Kubernetes
 * <https://github.com/stefanprodan/podinfo>
 
 ## Learn More
-* [Documentation](docs/) - TBD
+* [Application Overview](docs/overview.md)
+* [Other Documentation](docs/)
 
 ## Pre-Requisites
 
 * Kubernetes Cluster deployed
 * Kubernetes config installed in `~/.kube/config`
 * Helm installed
-* Kubernetes: `>=1.19.0-0`
+
+Kubernetes: `>=1.19.0-0`
 
 Install Helm
 
@@ -96,6 +98,8 @@ helm install podinfo chart/
 | serviceMonitor.enabled | bool | `false` |  |
 | serviceMonitor.interval | string | `"15s"` |  |
 | serviceMonitor.additionalLabels | object | `{}` |  |
+| serviceMonitor.namespace | string | `"monitoring"` |  |
+| serviceMonitor.dashboards.label | string | `"grafana_dashboard"` |  |
 | resources.limits | string | `nil` |  |
 | resources.requests.cpu | string | `"1m"` |  |
 | resources.requests.memory | string | `"16Mi"` |  |

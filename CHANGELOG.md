@@ -2,6 +2,12 @@
 
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
+## [6.0.0-bb.2] - 2021-11-30
+
+### Added
+
+- Added Grafana dashborad support
+
 ## [6.0.0-bb.1] - 2021-11-09
 
 ### Added
