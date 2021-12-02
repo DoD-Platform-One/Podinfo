@@ -127,8 +127,10 @@ serviceMonitor:
   interval: 15s
   additionalLabels: {}
   ## Added by Big Bang
-  namespace: monitoring
   dashboards:
+    # Namespace to put .json ConfigMap so Grafana sidecar will find it
+    namespace: ""
+    # Label to apply to dashboard so Grafana sidecar will find it
     label: grafana_dashboard
 
 resources:
