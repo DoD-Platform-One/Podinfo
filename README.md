@@ -1,6 +1,6 @@
 # podinfo
 
-![Version: 6.0.0-bb.2](https://img.shields.io/badge/Version-6.0.0--bb.2-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 6.0.0-bb.3](https://img.shields.io/badge/Version-6.0.0--bb.3-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -98,7 +98,7 @@ helm install podinfo chart/
 | serviceMonitor.enabled | bool | `false` |  |
 | serviceMonitor.interval | string | `"15s"` |  |
 | serviceMonitor.additionalLabels | object | `{}` |  |
-| serviceMonitor.namespace | string | `"monitoring"` |  |
+| serviceMonitor.dashboards.namespace | string | `""` |  |
 | serviceMonitor.dashboards.label | string | `"grafana_dashboard"` |  |
 | resources.limits | string | `nil` |  |
 | resources.requests.cpu | string | `"1m"` |  |

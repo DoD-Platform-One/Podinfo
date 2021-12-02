@@ -10,7 +10,7 @@ items:
   kind: ConfigMap
   metadata:
     name: {{ printf "%s-%s" $pkg $dashboardName | trunc 63 | trimSuffix "-" }}
-    namespace: {{ $.Values.serviceMonitor.namespace }}
+    namespace: {{ default $.Release.Namespace $.Values.serviceMonitor.dashboards.namespace }}
     labels:
       {{- if $.Values.serviceMonitor.dashboards.label }}
       {{ $.Values.serviceMonitor.dashboards.label }}: "1"

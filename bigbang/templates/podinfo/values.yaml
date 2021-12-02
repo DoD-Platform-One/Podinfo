@@ -10,6 +10,9 @@ istio:
     - istio-system/{{ default "public" .Values.podinfo.ingress.gateway }}
 serviceMonitor:
   enabled: {{ .Values.monitoring.enabled }}
+  dashboards:
+    namespace: monitoring
+    label: {{ dig "values" "grafana" "sidecar" "dashboards" "label" "grafana_dashboard" .Values.monitoring }}
 {{- end }}
 
 {{- /* Create secret */ -}}
