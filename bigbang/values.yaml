@@ -46,7 +46,7 @@ promtail:
 loki:
   enabled: false
 
-eck-operator:
+eckoperator:
   enabled: false
 
 logging:
