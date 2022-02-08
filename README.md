@@ -43,7 +43,7 @@ helm install flux-podinfo chart/
 Please see the [contributing guide](./CONTRIBUTING.md) if you are interested in contributing.
 # podinfo
 
-![Version: 6.0.0-bb.4](https://img.shields.io/badge/Version-6.0.0--bb.4-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 6.0.0-bb.5](https://img.shields.io/badge/Version-6.0.0--bb.5-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -155,6 +155,9 @@ helm install podinfo chart/
 | istio.podinfo.enabled | bool | `true` |  |
 | istio.podinfo.gateways[0] | string | `"istio-system/public"` |  |
 | istio.podinfo.hosts[0] | string | `"podinfo.{{ .Values.domain }}"` |  |
+| bbtests.enabled | bool | `false` |  |
+| bbtests.cypress.artifacts | bool | `true` |  |
+| bbtests.cypress.envs.cypress_url | string | `"http://{{ template \"podinfo.fullname\" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.externalPort }}"` |  |
 
 ## Contributing
 

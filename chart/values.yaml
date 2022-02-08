@@ -157,3 +157,14 @@ istio:
       - istio-system/public
     hosts:
       - podinfo.{{ .Values.domain }}
+
+# Bigbang helm test values default disabled
+bbtests:
+  enabled: false
+  cypress:
+    artifacts: true
+    envs:
+      cypress_url: 'http://{{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.externalPort }}'
+  scripts:
+    envs:
+      URL: 'http://{{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.externalPort }}'

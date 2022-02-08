@@ -2,12 +2,92 @@ podinfo:
   enabled: true
   git:
     repo: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/podinfo
-    tag:  6.0.0-bb.1
+    tag:  6.0.0-bb.5
     path: chart
   flux: {}
   ingress:
     gateway: ""
+  values:
+    bbtests:
+      enabled: true
+      cypress:
+        envs:
+          cypress_url: "https://podinfo.bigbang.dev"
+      scripts:
+        envs:
+          URL: "https://podinfo.bigbang.dev"
 
-# Network Policies
+# Toggle for network polocies
 networkPolicies:
   enabled: false
+
+# Toggle for Bigbang Core packages set true to install
+jaeger:
+  enabled: false
+
+kiali:
+  enabled: false
+
+clusterAuditor:
+  enabled: false
+
+gatekeeper:
+  enabled: false
+
+kyverno:
+  enabled: false
+
+tempo:
+  enabled: false
+
+promtail:
+  enabled: false
+
+loki:
+  enabled: false
+
+eck-operator:
+  enabled: false
+
+logging:
+  enabled: false
+
+fluentbit:
+  enabled: false
+
+monitoring:
+  enabled: false
+
+twistlock:
+  enabled: false
+
+# Toggle for Bigbang Addon packages set true to install
+addons:
+  argocd:
+    enabled: false
+  authservice:
+    enabled: false
+  gitlab:
+    enabled: false
+  gitlabRunner:
+    enabled: false
+  anchore:
+    enabled: false
+  sonarqube:
+    enabled: false
+  minioOperator:
+    enabled: false
+  minio:
+    enabled: false
+  mattermostoperator:
+    enabled: false
+  mattermost:
+    enabled: false
+  nexus:
+    enabled: false
+  velero:
+    enabled: false
+  keycloak:
+    enabled: false
+  vault:
+    enabled: false
