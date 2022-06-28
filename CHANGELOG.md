@@ -3,6 +3,11 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.0.0-bb.6] - 2022-06-28
+### Changed
+- Updated bb base to 2.0.0
+- Updated gluon to 0.2.10
+
 ## [6.0.0-bb.5] - 2022-01-31
 ### Modified
 - Modified cypress tests and added gluon library

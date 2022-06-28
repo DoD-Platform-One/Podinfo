@@ -18,7 +18,7 @@ spec:
   {{- end }}
   containers:
     - name: curl
-      image: registry1.dso.mil/ironbank/big-bang/base
+      image: registry1.dso.mil/ironbank/big-bang/base:2.0.0
       command:
         - sh
         - -c
