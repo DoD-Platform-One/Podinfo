@@ -19,4 +19,5 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Gitlab Pull Trigger
-        run: curl --fail --request POST --header "PRIVATE-TOKEN: ${{secrets.GITLAB_ACCESS_TOKEN}}" "https://repo1.dso.mil/api/v4/projects/${{secrets.GITLAB_PROJECT_ID}}/mirror/pull"
+        run: |
+          curl --fail --request POST --header "PRIVATE-TOKEN: ${{secrets.GITLAB_ACCESS_TOKEN}}" --url "https://repo1.dso.mil/api/v4/projects/${{secrets.GITLAB_PROJECT_ID}}/mirror/pull"
