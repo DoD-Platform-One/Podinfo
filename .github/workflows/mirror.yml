@@ -8,13 +8,13 @@ jobs:
     steps:
        - uses: actions/checkout@v1
        - name: Mirror + trigger CI
-         uses: SvanBoxel/gitlab-mirror-and-ci-action@master
+         uses: DoD-Platform-One/gitlab-mirror-and-ci-action@master
          with:
            args: "https://gitlab.com/<namespace>/<repository>"
          env:
            FORCE_PUSH: "false"
-           GITLAB_HOSTNAME: "gitlab.com"
-           GITLAB_USERNAME: "svboxel"
+           GITLAB_HOSTNAME: "repo1.dso.mil"
+           GITLAB_USERNAME: "snekcode"
            GITLAB_PASSWORD: ${{ secrets.GITLAB_ACCESS_TOKEN }}
            GITLAB_PROJECT_ID: ${{ secrets.GITLAB_PROJECT_ID }}
            GITHUB_TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}
