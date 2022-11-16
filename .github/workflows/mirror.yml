@@ -10,7 +10,7 @@ jobs:
        - name: Mirror + trigger CI
          uses: DoD-Platform-One/gitlab-mirror-and-ci-action@master
          with:
-           args: ${{ secrets.GITLAB_REPO_URL }}
+           args: https://repo1.dso.mil/platform-one/big-bang/apps/sandbox/podinfo.git
          env:
            FORCE_PUSH: "false"
            GITLAB_HOSTNAME: "repo1.dso.mil"
