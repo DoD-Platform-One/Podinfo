@@ -37,6 +37,17 @@ gatekeeper:
 kyverno:
   enabled: false
 
+kyvernoPolicies:
+  enabled: false
+
+kyvernoReporter:
+  enabled: false
+
+grafana:
+  enabled: false
+
+neuvector:
+  enabled: false
 tempo:
   enabled: false
 
@@ -46,10 +57,10 @@ promtail:
 loki:
   enabled: false
 
-eckoperator:
+eckOperator:
   enabled: false
 
-logging:
+elasticsearchKibana:
   enabled: false
 
 fluentbit:
@@ -79,7 +90,7 @@ addons:
     enabled: false
   minio:
     enabled: false
-  mattermostoperator:
+  mattermostOperator:
     enabled: false
   mattermost:
     enabled: false

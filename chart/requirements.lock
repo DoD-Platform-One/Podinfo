@@ -1,6 +1,6 @@
 dependencies:
 - name: gluon
-  repository: oci://registry.dso.mil/platform-one/big-bang/apps/library-charts/gluon
+  repository: oci://registry1.dso.mil/bigbang
   version: 0.2.10
-digest: sha256:10de93396e275c5f10a0919340e333b9e4b011f2fc63a5b43c9e91e49800d8bc
-generated: "2022-06-28T12:41:30.054039-06:00"
+digest: sha256:78587eca091164752360329a07d1a974528f8c18a0e8f1fdd2620d8c7fc90bf2
+generated: "2023-09-07T14:30:23.697463-06:00"
