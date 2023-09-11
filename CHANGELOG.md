@@ -3,6 +3,10 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.0.0-bb.9] - 2023-09-11
+### Changed
+- Add ability to set customized labels to the pod(s) that are deployed
+
 ## [6.0.0-bb.8] - 2023-09-07
 ### Changed
 - Update gluon to pull from registry1
