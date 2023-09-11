@@ -1,6 +1,6 @@
 # podinfo
 
-![Version: 6.0.0-bb.8](https://img.shields.io/badge/Version-6.0.0--bb.8-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 6.0.0-bb.9](https://img.shields.io/badge/Version-6.0.0--bb.9-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -107,6 +107,7 @@ helm install podinfo chart/
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
+| podLabels | object | `{}` |  |
 | domain | string | `"bigbang.dev"` |  |
 | istio.enabled | bool | `false` |  |
 | istio.podinfo.enabled | bool | `true` |  |
