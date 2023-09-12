@@ -23,6 +23,8 @@ To contribute a change:
 1. Write tests using [cypress](https://www.cypress.io) and/or shell scripts to cover your changes.
 1. Make commits using the [Conventional Commits](https://www.conventionalcommits.org/) format
 1. Update `CHANGELOG.md` using the [Keep a Changelog](https://keepachangelog.com) format
+1. Update the `version` field of `chart/Chart.yaml` with the next increment from the latest released version. Most times that means incrementing the `-bb.X` number to the next whole number. For example, if the latest version is `1.2.3-bb.4`, the next version is usually `1.2.3-bb.5`.
+1. Update `README.md` using the instructions located [here](https://repo1.dso.mil/big-bang/product/packages/gluon/-/blob/master/docs/bb-package-readme.md)
 1. Open a merge request into the `main` branch
 1. Add a reference to the issue in the merge request description
 1. Resolve any failures from the pipeline
