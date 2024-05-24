@@ -12,10 +12,10 @@ podinfo:
       enabled: true
       cypress:
         envs:
-          cypress_url: "https://podinfo.bigbang.dev"
+          cypress_url: "https://podinfo.dev.bigbang.mil"
       scripts:
         envs:
-          URL: "https://podinfo.bigbang.dev"
+          URL: "https://podinfo.dev.bigbang.mil"
 
 # Toggle for network polocies
 networkPolicies:

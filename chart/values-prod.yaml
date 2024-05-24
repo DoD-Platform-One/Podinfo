@@ -8,7 +8,7 @@ backends: []
 
 image:
   repository: ghcr.io/stefanprodan/podinfo
-  tag: 6.0.0
+  tag: 6.6.2
   pullPolicy: IfNotPresent
 
 ui:
@@ -40,6 +40,16 @@ service:
 # enable h2c protocol (non-TLS version of HTTP/2)
 h2c:
   enabled: false
+
+# config file settings
+config:
+  # config file path
+  path: ""
+  # config file name
+  name: ""
+
+# Additional command line arguments to pass to podinfo container
+extraArgs: []
 
 # enable tls on the podinfo service
 tls:
@@ -77,13 +87,13 @@ hpa:
   # average http requests per second per pod (k8s-prometheus-adapter)
   requests:
 
-# Redis address in the format <host>:<port>
+# Redis address in the format tcp://<host>:<port>
 cache: ""
 # Redis deployment
 redis:
   enabled: true
   repository: redis
-  tag: 6.0.8
+  tag: 7.0.7
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -91,6 +101,8 @@ serviceAccount:
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
   name:
+  # List of image pull secrets if pulling from private registries
+  imagePullSecrets: []
 
 # set container security context
 securityContext: {}
@@ -98,6 +110,7 @@ securityContext: {}
 ingress:
   enabled: false
   className: ""
+  additionalLabels: {}
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
@@ -127,6 +140,14 @@ resources:
   requests:
     cpu: 100m
     memory: 64Mi
+
+# Extra environment variables for the podinfo container
+extraEnvs: []
+# Example on how to configure extraEnvs
+#  - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+#    value: "http://otel:4317"
+#  - name: MULTIPLE_VALUES
+#    value: TEST
 
 nodeSelector: {}
 

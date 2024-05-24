@@ -1,6 +1,6 @@
 # podinfo
 
-![Version: 6.0.0-bb.9](https://img.shields.io/badge/Version-6.0.0--bb.9-informational?style=flat-square) ![AppVersion: 6.0.0](https://img.shields.io/badge/AppVersion-6.0.0-informational?style=flat-square)
+![Version: 6.6.2-bb.0](https://img.shields.io/badge/Version-6.6.2--bb.0-informational?style=flat-square) ![AppVersion: 6.6.2](https://img.shields.io/badge/AppVersion-6.6.2-informational?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -19,7 +19,7 @@ Podinfo Helm chart for Kubernetes
 * Kubernetes config installed in `~/.kube/config`
 * Helm installed
 
-Kubernetes: `>=1.19.0-0`
+Kubernetes: `>=1.23.0-0`
 
 Install Helm
 
@@ -43,7 +43,7 @@ helm install podinfo chart/
 | backend | string | `nil` |  |
 | backends | list | `[]` |  |
 | image.repository | string | `"ghcr.io/stefanprodan/podinfo"` |  |
-| image.tag | string | `"6.0.0"` |  |
+| image.tag | string | `"6.6.2"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | ui.color | string | `"#34577c"` |  |
 | ui.message | string | `""` |  |
@@ -65,6 +65,9 @@ helm install podinfo chart/
 | service.nodePort | int | `31198` |  |
 | service.hostPort | string | `nil` |  |
 | h2c.enabled | bool | `false` |  |
+| config.path | string | `""` |  |
+| config.name | string | `""` |  |
+| extraArgs | list | `[]` |  |
 | tls.enabled | bool | `false` |  |
 | tls.secretName | string | `nil` |  |
 | tls.certPath | string | `"/data/cert"` |  |
@@ -82,13 +85,17 @@ helm install podinfo chart/
 | cache | string | `""` |  |
 | redis.enabled | bool | `false` |  |
 | redis.repository | string | `"redis"` |  |
-| redis.tag | string | `"6.0.8"` |  |
+| redis.tag | string | `"7.0.7"` |  |
 | serviceAccount.enabled | bool | `false` |  |
 | serviceAccount.name | string | `nil` |  |
 | serviceAccount.imagePullSecrets | list | `[]` |  |
-| securityContext | object | `{}` |  |
+| securityContext.runAsUser | int | `1001` |  |
+| securityContext.runAsGroup | int | `1001` |  |
+| securityContext.runAsNonRoot | bool | `true` |  |
+| securityContext.capabilities.drop[0] | string | `"ALL"` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.className | string | `""` |  |
+| ingress.additionalLabels | object | `{}` |  |
 | ingress.annotations | object | `{}` |  |
 | ingress.hosts[0].host | string | `"podinfo.local"` |  |
 | ingress.hosts[0].paths[0].path | string | `"/"` |  |
@@ -103,12 +110,31 @@ helm install podinfo chart/
 | resources.limits | string | `nil` |  |
 | resources.requests.cpu | string | `"1m"` |  |
 | resources.requests.memory | string | `"16Mi"` |  |
+| extraEnvs | list | `[]` |  |
 | nodeSelector | object | `{}` |  |
 | tolerations | list | `[]` |  |
 | affinity | object | `{}` |  |
 | podAnnotations | object | `{}` |  |
 | podLabels | object | `{}` |  |
-| domain | string | `"bigbang.dev"` |  |
+| topologySpreadConstraints | list | `[]` |  |
+| podDisruptionBudget | object | `{}` |  |
+| probes.readiness.initialDelaySeconds | int | `1` |  |
+| probes.readiness.timeoutSeconds | int | `5` |  |
+| probes.readiness.failureThreshold | int | `3` |  |
+| probes.readiness.successThreshold | int | `1` |  |
+| probes.readiness.periodSeconds | int | `10` |  |
+| probes.liveness.initialDelaySeconds | int | `1` |  |
+| probes.liveness.timeoutSeconds | int | `5` |  |
+| probes.liveness.failureThreshold | int | `3` |  |
+| probes.liveness.successThreshold | int | `1` |  |
+| probes.liveness.periodSeconds | int | `10` |  |
+| probes.startup.enable | bool | `false` |  |
+| probes.startup.initialDelaySeconds | int | `10` |  |
+| probes.startup.timeoutSeconds | int | `5` |  |
+| probes.startup.failureThreshold | int | `20` |  |
+| probes.startup.successThreshold | int | `1` |  |
+| probes.startup.periodSeconds | int | `10` |  |
+| domain | string | `"dev.bigbang.mil"` |  |
 | istio.enabled | bool | `false` |  |
 | istio.podinfo.enabled | bool | `true` |  |
 | istio.podinfo.gateways[0] | string | `"istio-system/public"` |  |

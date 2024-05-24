@@ -3,6 +3,14 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.0.0-bb.10] - 2024-05-21
+### Changed
+- Added a renovate to try to keep podinfo up to date
+- Updated podinfo from 6.0.0 to 6.6.2
+- Added a development maintenance doc
+- Updated gluon from 0.2.10 to 0.5.0
+- Updated the tests to run with gluon 0.5.0
+
 ## [6.0.0-bb.9] - 2023-09-11
 ### Changed
 - Add ability to set customized labels to the pod(s) that are deployed

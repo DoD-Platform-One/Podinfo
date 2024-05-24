@@ -76,7 +76,7 @@ spec:
             {{- if .Values.cache }}
             - --cache-server={{ .Values.cache }}
             {{- else if .Values.redis.enabled }}
-            - --cache-server={{ template "podinfo.fullname" . }}-redis:6379
+            - --cache-server=tcp://{{ template "podinfo.fullname" . }}-redis:6379
             {{- end }}
             - --level={{ .Values.logLevel }}
             - --random-delay={{ .Values.faults.delay }}
@@ -89,6 +89,15 @@ spec:
             {{- end }}
             {{- if .Values.h2c.enabled }}
             - --h2c
+            {{- end }}
+            {{- with .Values.config.path }}
+            - --config-path={{ . }}
+            {{- end }}
+            {{- with .Values.config.name }}
+            - --config={{ . }}
+            {{- end }}
+            {{- with .Values.extraArgs }}
+              {{- toYaml . | nindent 12 }}
             {{- end }}
           env:
           {{- if .Values.ui.message }}
@@ -106,6 +115,9 @@ spec:
           {{- if .Values.backend }}
           - name: PODINFO_BACKEND_URL
             value: {{ .Values.backend }}
+          {{- end }}
+          {{- if .Values.extraEnvs }}
+{{ toYaml .Values.extraEnvs | indent 10 }}
           {{- end }}
           ports:
             - name: http
@@ -132,6 +144,22 @@ spec:
               containerPort: {{ .Values.service.grpcPort }}
               protocol: TCP
             {{- end }}
+          {{- if .Values.probes.startup.enable }}
+          startupProbe:
+            exec:
+              command:
+              - podcli
+              - check
+              - http
+              - localhost:{{ .Values.service.httpPort | default 9898 }}/healthz
+            {{- with .Values.probes.startup }}
+            initialDelaySeconds: {{ .initialDelaySeconds | default 1 }}
+            timeoutSeconds: {{ .timeoutSeconds | default 5 }}
+            failureThreshold: {{ .failureThreshold | default 3 }}
+            successThreshold: {{ .successThreshold | default 1 }}
+            periodSeconds: {{ .periodSeconds | default 10 }}
+            {{- end }}
+            {{- end }}
           livenessProbe:
             exec:
               command:
@@ -139,8 +167,13 @@ spec:
               - check
               - http
               - localhost:{{ .Values.service.httpPort | default 9898 }}/healthz
-            initialDelaySeconds: 1
-            timeoutSeconds: 5
+            {{- with .Values.probes.liveness }}
+            initialDelaySeconds: {{ .initialDelaySeconds | default 1 }}
+            timeoutSeconds: {{ .timeoutSeconds | default 5 }}
+            failureThreshold: {{ .failureThreshold | default 3 }}
+            successThreshold: {{ .successThreshold | default 1 }}
+            periodSeconds: {{ .periodSeconds | default 10 }}
+            {{- end }}
           readinessProbe:
             exec:
               command:
@@ -148,8 +181,13 @@ spec:
               - check
               - http
               - localhost:{{ .Values.service.httpPort | default 9898 }}/readyz
-            initialDelaySeconds: 1
-            timeoutSeconds: 5
+            {{- with .Values.probes.readiness }}
+            initialDelaySeconds: {{ .initialDelaySeconds | default 1 }}
+            timeoutSeconds: {{ .timeoutSeconds | default 5 }}
+            failureThreshold: {{ .failureThreshold | default 3 }}
+            successThreshold: {{ .successThreshold | default 1 }}
+            periodSeconds: {{ .periodSeconds | default 10 }}
+            {{- end }}
           volumeMounts:
           - name: data
             mountPath: /data
@@ -180,3 +218,7 @@ spec:
         secret:
           secretName: {{ template "podinfo.tlsSecretName" . }}
       {{- end }}
+    {{- with .Values.topologySpreadConstraints }}
+      topologySpreadConstraints:
+{{- toYaml . | nindent 8 }}
+    {{- end }}
