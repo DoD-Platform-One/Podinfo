@@ -12,7 +12,6 @@ metadata:
     linkerd.io/inject: disabled
     appmesh.k8s.aws/sidecarInjectorWebhook: disabled
 spec:
-  {{- /* Added by Big Bang */ -}}
   {{- if .Values.serviceAccount.enabled }}
   serviceAccountName: {{ template "podinfo.serviceAccountName" . }}
   {{- end }}

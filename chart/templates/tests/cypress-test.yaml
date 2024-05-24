@@ -1,3 +1,13 @@
-{{- include "gluon.tests.cypress-configmap.base" .}}
+{{- include "gluon.tests.cypress-configmap.overrides" (list . "podinfo.cypress-configmap") }}
+{{- define "podinfo.cypress-configmap" }}
+metadata:
+  labels:
+    {{ include "podinfo.selectorLabels" . | nindent 4 }}
+{{- end }}
 ---
-{{- include "gluon.tests.cypress-runner.base" .}}
+{{- include "gluon.tests.cypress-runner.overrides" (list . "podinfo.cypress-runner") -}}
+{{- define "podinfo.cypress-runner" -}}
+metadata:
+  labels:
+    {{ include "podinfo.selectorLabels" . | nindent 4 }}
+{{- end }}
