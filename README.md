@@ -5,11 +5,13 @@
 Podinfo Helm chart for Kubernetes
 
 ## Upstream References
+
 * <https://github.com/stefanprodan/podinfo>
 
 * <https://github.com/stefanprodan/podinfo>
 
 ## Learn More
+
 * [Application Overview](docs/overview.md)
 * [Other Documentation](docs/)
 
@@ -23,12 +25,13 @@ Kubernetes: `>=1.23.0-0`
 
 Install Helm
 
-https://helm.sh/docs/intro/install/
+<https://helm.sh/docs/intro/install/>
 
 ## Deployment
 
 * Clone down the repository
 * cd into directory
+
 ```bash
 helm install podinfo chart/
 ```
