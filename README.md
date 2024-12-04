@@ -1,6 +1,6 @@
 # podinfo
 
-![Version: 6.6.2-bb.0](https://img.shields.io/badge/Version-6.6.2--bb.0-informational?style=flat-square) ![AppVersion: 6.6.2](https://img.shields.io/badge/AppVersion-6.6.2-informational?style=flat-square)
+![Version: 6.6.2-bb.0](https://img.shields.io/badge/Version-6.6.2--bb.0-informational?style=flat-square) ![AppVersion: 6.6.2](https://img.shields.io/badge/AppVersion-6.6.2-informational?style=flat-square) 
 
 Podinfo Helm chart for Kubernetes
 
