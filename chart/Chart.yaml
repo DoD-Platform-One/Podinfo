@@ -1,6 +1,6 @@
 apiVersion: v2
 icon: https://kubernetes.io/icons/icon-128x128.png
-version: 6.6.2-bb.0
+version: 6.6.2-bb.1
 appVersion: 6.6.2
 name: podinfo
 engine: gotpl
@@ -14,5 +14,7 @@ sources:
 kubeVersion: ">=1.23.0-0"
 dependencies:
 - name: gluon
-  version: "0.5.0"
+  version: "0.5.12"
   repository: "oci://registry1.dso.mil/bigbang"
+annotations: 
+  bigbang.dev/maintenanceTrack: bb_maintainted
