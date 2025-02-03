@@ -4,6 +4,15 @@
 
 ---
 
+## [6.7.1-bb.0] - 2025-01-30
+
+### Changed
+
+- Updated chart from upstream 6.6.2 to 6.7.1
+- Updated gluon from 0.5.12 to 0.5.14
+- Added subchart update configuration to renovate.json
+- Replaced requirements.lock with Chart.lock for use with helm v3
+
 ## [6.6.2-bb.1] - 2024-12-30
 
 ### Changed

@@ -6,7 +6,7 @@
     "dependencyDashboardTitle": "Renovate: Upgrade Podinfo Dependencies",
     "draftPR": true,
     "enabledManagers": ["regex", "helmv3"],
-    "labels": ["kind::maintenance"],
+    "labels": ["kind::maintenance", "team::Tools & Automation"],
     "commitMessagePrefix": "SKIP UPDATE CHECK",
     "packageRules": [
         {
@@ -45,5 +45,8 @@
             "versioningTemplate": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z$"
         }
     ],
-    "separateMajorMinor": false
+    "separateMajorMinor": false,
+    "postUpdateOptions": [
+        "helmUpdateSubChartArchives"
+    ]
 }

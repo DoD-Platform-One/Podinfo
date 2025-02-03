@@ -92,6 +92,7 @@ The following tables lists the configurable parameters of the podinfo chart and 
 | `serviceAccount.name`             | `None`                 | The name of the service account to use, if not set and create is true, a name is generated using the fullname template |
 | `serviceAccount.imagePullSecrets` | `[]`                   | List of image pull secrets if pulling from private registries.                                                         |
 | `securityContext`                 | `{}`                   | The security context to be set on the podinfo container                                                                |
+| `podSecurityContext`              | `{}`                   | The security context to be set on the pod                                                                              |
 | `linkerd.profile.enabled`         | `false`                | Create Linkerd service profile                                                                                         |
 | `serviceMonitor.enabled`          | `false`                | Whether a Prometheus Operator service monitor should be created                                                        |
 | `serviceMonitor.interval`         | `15s`                  | Prometheus scraping interval                                                                                           |
