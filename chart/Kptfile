@@ -5,7 +5,7 @@ metadata:
 upstream:
   type: git
   git:
-    commit: 8d010c498e79f499d1b37480507ca1ffb81a3bf7
+    commit: 6b7aab8a10d6ee8b895b0a5048f4ab0966ed29ff
     repo: https://github.com/stefanprodan/podinfo
     directory: charts/podinfo
-    ref: 6.6.2
+    ref: 6.7.1

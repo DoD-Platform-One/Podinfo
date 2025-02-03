@@ -1,14 +1,14 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # podinfo
 
-![Version: 6.6.2-bb.1](https://img.shields.io/badge/Version-6.6.2--bb.1-informational?style=flat-square) ![AppVersion: 6.6.2](https://img.shields.io/badge/AppVersion-6.6.2-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
+![Version: 6.7.1-bb.0](https://img.shields.io/badge/Version-6.7.1--bb.0-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
 ## Upstream References
-- <https://github.com/stefanprodan/podinfo>
 
-* <https://github.com/stefanprodan/podinfo>
+- <https://github.com/stefanprodan/podinfo>
+- <https://github.com/stefanprodan/podinfo>
 
 ## Upstream Release Notes
 
@@ -57,7 +57,7 @@ helm install podinfo chart/
 | backend | string | `nil` |  |
 | backends | list | `[]` |  |
 | image.repository | string | `"ghcr.io/stefanprodan/podinfo"` |  |
-| image.tag | string | `"6.6.2"` |  |
+| image.tag | string | `"6.7.1"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | ui.color | string | `"#34577c"` |  |
 | ui.message | string | `""` |  |
@@ -107,6 +107,7 @@ helm install podinfo chart/
 | securityContext.runAsGroup | int | `1001` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
 | securityContext.capabilities.drop[0] | string | `"ALL"` |  |
+| podSecurityContext | object | `{}` |  |
 | ingress.enabled | bool | `false` |  |
 | ingress.className | string | `""` |  |
 | ingress.additionalLabels | object | `{}` |  |
