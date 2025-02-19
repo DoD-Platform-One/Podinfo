@@ -160,3 +160,11 @@ tolerations: []
 affinity: {}
 
 podAnnotations: {}
+
+waitJob:
+  enabled: true
+  scripts:
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7
+  permissions:
+    apiGroups: {}
+    resources: {}
