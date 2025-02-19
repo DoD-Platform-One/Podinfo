@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # podinfo
 
-![Version: 6.7.1-bb.1](https://img.shields.io/badge/Version-6.7.1--bb.1-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
+![Version: 6.7.1-bb.2](https://img.shields.io/badge/Version-6.7.1--bb.2-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -100,9 +100,9 @@ helm install podinfo chart/
 | redis.enabled | bool | `false` |  |
 | redis.repository | string | `"redis"` |  |
 | redis.tag | string | `"7.0.7"` |  |
-| serviceAccount.enabled | bool | `false` |  |
+| serviceAccount.enabled | bool | `true` |  |
 | serviceAccount.name | string | `nil` |  |
-| serviceAccount.imagePullSecrets | list | `[]` |  |
+| serviceAccount.imagePullSecrets[0].name | string | `"private-registry"` |  |
 | securityContext.runAsUser | int | `1001` |  |
 | securityContext.runAsGroup | int | `1001` |  |
 | securityContext.runAsNonRoot | bool | `true` |  |
