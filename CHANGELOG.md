@@ -3,6 +3,11 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.7.1-bb.1] - 2025-02-18
+
+### Changed
+
+- Updated podinfo image to ironbank provided one
 
 ## [6.7.1-bb.0] - 2025-01-30
 

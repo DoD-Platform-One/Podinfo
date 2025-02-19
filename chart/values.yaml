@@ -7,7 +7,7 @@ backend: #http://backend-podinfo:9898/echo
 backends: []
 
 image:
-  repository: ghcr.io/stefanprodan/podinfo
+  repository: registry1.dso.mil/ironbank/opensource/bigbang/podinfo
   tag: 6.7.1
   pullPolicy: IfNotPresent
 
