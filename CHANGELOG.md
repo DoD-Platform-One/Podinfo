@@ -3,6 +3,12 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.7.1-bb.2] - 2025-02-19
+
+### Changed
+
+- Add private registry info to fix the deployment
+
 ## [6.7.1-bb.1] - 2025-02-18
 
 ### Changed
