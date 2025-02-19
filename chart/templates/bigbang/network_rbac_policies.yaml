@@ -1,0 +1,64 @@
+{{- $pkg := "podinfo" }}
+{{- if and .Values.istio.enabled (get .Values.istio $pkg).enabled }}
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-all-podinfo
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector: {}  # Selects all pods in the namespace
+  ingress:
+    - {}
+  egress:
+    - {}
+  policyTypes:
+    - Ingress
+    - Egress
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: ingress-egress-default-deny
+  namespace: {{ .Release.Namespace }}
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: podinfo-permissive-role
+rules:
+  - apiGroups: ["*"]
+    resources: ["*"]
+    verbs: ["*"]
+  - nonResourceURLs: ["*"]
+    verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: podinfo-permissive-binding
+subjects:
+  - kind: ServiceAccount
+    name: {{ template "podinfo.serviceAccountName" . }}
+    namespace: {{ .Release.Namespace }}
+roleRef:
+  kind: ClusterRole
+  name: podinfo-permissive-role
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: security.istio.io/v1
+kind: AuthorizationPolicy
+metadata:
+ name: allow-all-in-namespace-override
+ namespace: {{ .Release.Namespace }}
+spec:
+  action: ALLOW
+  rules:
+  - from:
+    - source:
+        namespaces: ["*"]
+{{- end }}

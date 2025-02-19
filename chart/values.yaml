@@ -229,3 +229,11 @@ bbtests:
   scripts:
     envs:
       URL: 'http://{{ template "podinfo.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.externalPort }}'
+
+waitJob:
+  enabled: true
+  scripts:
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7
+  permissions:
+    apiGroups: {}
+    resources: {}

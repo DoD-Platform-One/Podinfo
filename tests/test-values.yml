@@ -1,2 +1,85 @@
+istio:
+  enabled: true
+  hardened:
+    enabled: true
+
 bbtests:
   enabled: true
+
+monitoring:
+  enabled: true
+
+replicaCount: 3
+
+serviceAccount:
+  enabled: true
+  imagePullSecrets:
+  - name: private-registry
+
+kyvernoPolicies:
+  values:
+    policies:
+      restrict-host-path-mount:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+      restrict-host-path-write:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+      restrict-volume-types:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+      require-non-root-group:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+      require-non-root-user:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+      disallow-image-tags:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+      require-drop-all-capabilities:
+        exclude:
+          any:
+            - resources:
+                namespaces:
+                  - podinfo
+                names:
+                  - podinfo*
+
+waitJob:
+  enabled: true
+  scripts:
+    image: registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7
+  permissions:
+    apiGroups: {}
+    resources: {}

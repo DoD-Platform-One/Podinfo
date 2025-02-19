@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # podinfo
 
-![Version: 6.7.1-bb.2](https://img.shields.io/badge/Version-6.7.1--bb.2-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
+![Version: 6.7.1-bb.3](https://img.shields.io/badge/Version-6.7.1--bb.3-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -158,6 +158,10 @@ helm install podinfo chart/
 | bbtests.cypress.artifacts | bool | `true` |  |
 | bbtests.cypress.envs.cypress_url | string | `"http://{{ template \"podinfo.fullname\" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.externalPort }}"` |  |
 | bbtests.scripts.envs.URL | string | `"http://{{ template \"podinfo.fullname\" . }}.{{ .Release.Namespace }}.svc.cluster.local:{{ .Values.service.externalPort }}"` |  |
+| waitJob.enabled | bool | `true` |  |
+| waitJob.scripts.image | string | `"registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7"` |  |
+| waitJob.permissions.apiGroups | object | `{}` |  |
+| waitJob.permissions.resources | object | `{}` |  |
 
 ## Contributing
 

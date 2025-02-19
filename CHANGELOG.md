@@ -3,6 +3,13 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.7.1-bb.3] - 2025-02-19
+
+### Changed
+
+- Add istio components to allow the image to deploy and be reachable
+- Add wait job to avoid issues with the clean install pipeline
+
 ## [6.7.1-bb.2] - 2025-02-19
 
 ### Changed
