@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # podinfo
 
-![Version: 6.7.1-bb.3](https://img.shields.io/badge/Version-6.7.1--bb.3-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
+![Version: 6.7.1-bb.4](https://img.shields.io/badge/Version-6.7.1--bb.4-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -162,6 +162,12 @@ helm install podinfo chart/
 | waitJob.scripts.image | string | `"registry1.dso.mil/ironbank/opensource/kubernetes/kubectl:v1.30.7"` |  |
 | waitJob.permissions.apiGroups | object | `{}` |  |
 | waitJob.permissions.resources | object | `{}` |  |
+| privateRegistrySecret | bool | `false` |  |
+| privateRegistry | string | `"registry1.dso.mil"` |  |
+| privateRegistryUsername | string | `""` |  |
+| privateRegistryPassword | string | `""` |  |
+| privateRegistryEmail | string | `"help@dsop.io"` |  |
+| privateRegistrySecretName | string | `"private-registry"` |  |
 
 ## Contributing
 
