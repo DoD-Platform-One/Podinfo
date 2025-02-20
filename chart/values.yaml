@@ -237,3 +237,11 @@ waitJob:
   permissions:
     apiGroups: {}
     resources: {}
+
+privateRegistrySecret: false
+privateRegistry: "registry1.dso.mil"
+privateRegistryUsername: ""
+privateRegistryPassword: ""
+privateRegistryEmail: "help@dsop.io"
+privateRegistrySecretName: "private-registry"
+

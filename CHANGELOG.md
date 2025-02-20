@@ -3,6 +3,12 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.7.1-bb.4] - 2025-02-20
+
+### Changed
+
+- Add automated private registry secret creation 
+
 ## [6.7.1-bb.3] - 2025-02-19
 
 ### Changed

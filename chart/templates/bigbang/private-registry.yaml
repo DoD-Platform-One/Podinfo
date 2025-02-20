@@ -1,0 +1,10 @@
+{{- if .Values.privateRegistrySecret }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ .Values.privateRegistrySecretName }}
+  namespace: {{ .Release.Namespace }}
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: {{ include "privateRegistryAuth" . | b64enc | quote }}
+{{- end }}
