@@ -245,3 +245,7 @@ privateRegistryPassword: ""
 privateRegistryEmail: "help@dsop.io"
 privateRegistrySecretName: "private-registry"
 
+autogensecrets: 
+  enabled: true
+
+warnInsteadOfFail: true

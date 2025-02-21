@@ -35,7 +35,7 @@ gatekeeper:
   enabled: false
 
 kyverno:
-  enabled: false
+  enabled: true
 
 kyvernoPolicies:
   enabled: false
@@ -75,7 +75,7 @@ twistlock:
 # Toggle for Bigbang Addon packages set true to install
 addons:
   argocd:
-    enabled: false
+    enabled: true
   authservice:
     enabled: false
   gitlab:

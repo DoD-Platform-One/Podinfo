@@ -11,6 +11,16 @@ monitoring:
 
 replicaCount: 3
 
+kyverno:
+  enabled: true
+
+addons:
+  argocd: 
+    enabled: true
+
+autogensecrets: 
+  enabled: true
+
 serviceAccount:
   enabled: true
   imagePullSecrets:
@@ -83,3 +93,5 @@ waitJob:
   permissions:
     apiGroups: {}
     resources: {}
+
+warnInsteadOfFail: true

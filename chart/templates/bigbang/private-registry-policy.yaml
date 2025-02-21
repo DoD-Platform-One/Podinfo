@@ -1,0 +1,36 @@
+{{- if .Values.autogensecrets.enabled -}}
+{{- if not (.Capabilities.APIVersions.Has "argoproj.io/v1alpha1") }}
+  {{- if .Values.warnInsteadOfFail }}
+  {{- else }}
+    {{- fail "ArgoCD is required for PodInfo runner auto register" }}
+  {{- end }}
+{{- end }}
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: sync-private-registry-secret
+  annotations:
+    policies.kyverno.io/title: Sync Private Registry Docker Secret
+    policies.kyverno.io/category: PodInfo
+    policies.kyverno.io/subject: PodInfo Private Registry Docker Secret
+spec:
+  rules:
+  - name: sync-private-registry-secret
+    match:
+      resources:
+        kinds:
+        - Namespace
+        selector:
+          matchLabels:
+            kubernetes.io/metadata.name: "{{ .Release.Namespace }}"
+    generate:
+      generateExisting: true
+      apiVersion: v1
+      kind: Secret
+      name: private-registry
+      namespace: {{ .Release.Namespace }}
+      synchronize: true
+      clone:
+        namespace: argocd
+        name: private-registry
+{{- end }}
