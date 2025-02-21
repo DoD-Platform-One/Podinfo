@@ -25,17 +25,79 @@ BigBang makes modifications to the upstream helm chart. The full list of changes
 When deploying with kyverno you will need to add these to your overrides:
 
 ```yaml
-kyvernoPolicies:
-  values:
-    policies:
-      restrict-image-registries:
-        exclude:
-          any:
-            - resources:
-                namespaces:
-                  - podinfo
-                names:
-                  - podinfo*
+monitoring:
+  enabled: true
+
+kyverno:
+  enabled: true
+
+addons:
+  argocd: 
+    enabled: true
+
+packages:
+  podinfo:
+    enabled: true
+    sourceType: "git"
+    git:
+      repo: https://repo1.dso.mil/big-bang/apps/sandbox/podinfo.git
+      path: chart
+      tag: null
+      branch: your-branch-name # add your branch name here after you publish it
+    flux:
+      timeout: 5m
+    postRenderers: []
+    wrapper:
+      enabled: true
+    dependsOn:
+      - name: monitoring
+        namespace: bigbang
+    values:
+      autogensecrets: 
+        enabled: true
+      replicaCount: 3
+      istio:
+        hardened:
+          enabled: true
+```
+
+```bash
+# Run the following command to install:
+./docs/assets/scripts/developer/k3d-dev.sh
+export KUBECONFIG=~/.kube/$(aws sts get-caller-identity --query "Arn" --output text | cut -d '/' -f2)-dev-default-config
+./scripts/install_flux.sh -u $REGISTRY1_USER -p $REGISTRY1_PASSWORD
+    helm upgrade -i bigbang chart/ -n bigbang --create-namespace \
+    --set registryCredentials.username=${REGISTRY1_USER} \
+    --set registryCredentials.password="${REGISTRY1_PASSWORD}" \
+    -f ./docs/assets/configs/example/policy-overrides-k3d.yaml \
+    -f ./chart/ingress-certs.yaml \
+    -f /your/podinfo/override/file/location/override.yaml
+```
+
+- Kyverno is a hard requirements for testing, because kyverno will be needed for policy replication
+- ArgoCD is a soft requirements, if not present then make sure to specify in an additional override file the following values:
+
+```yaml
+privateRegistrySecret: true
+privateRegistry: "registry1.dso.mil"
+privateRegistryUsername: "your_harbor_username"
+privateRegistryPassword: "your_harbor_password"
+privateRegistryEmail: "help@dsop.io"
+privateRegistrySecretName: "private-registry"
+```
+
+```bash
+# Run the following command to install:
+./docs/assets/scripts/developer/k3d-dev.sh
+export KUBECONFIG=~/.kube/$(aws sts get-caller-identity --query "Arn" --output text | cut -d '/' -f2)-dev-default-config
+./scripts/install_flux.sh -u $REGISTRY1_USER -p $REGISTRY1_PASSWORD
+    helm upgrade -i bigbang chart/ -n bigbang --create-namespace \
+    --set registryCredentials.username=${REGISTRY1_USER} \
+    --set registryCredentials.password="${REGISTRY1_PASSWORD}" \
+    -f ./docs/assets/configs/example/policy-overrides-k3d.yaml \
+    -f ./chart/ingress-certs.yaml \
+    -f /your/podinfo/override/file/location/override.yaml \
+    -f /your/podinfo/credentials/file/location/credentials.yaml
 ```
 
 ### Testing

@@ -3,6 +3,12 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.7.1-bb.5] - 2025-02-21
+
+### Changed
+
+- Add Kyverno policy to clone argocd secret private-registry in podinfo namespace
+
 ## [6.7.1-bb.4] - 2025-02-20
 
 ### Changed
