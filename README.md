@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # podinfo
 
-![Version: 6.7.1-bb.5](https://img.shields.io/badge/Version-6.7.1--bb.5-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
+![Version: 6.7.1-bb.6](https://img.shields.io/badge/Version-6.7.1--bb.6-informational?style=flat-square) ![AppVersion: 6.7.1](https://img.shields.io/badge/AppVersion-6.7.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -169,6 +169,7 @@ helm install podinfo chart/
 | privateRegistryEmail | string | `"help@dsop.io"` |  |
 | privateRegistrySecretName | string | `"private-registry"` |  |
 | autogensecrets.enabled | bool | `true` |  |
+| warnInsteadOfFail | bool | `true` |  |
 
 ## Contributing
 

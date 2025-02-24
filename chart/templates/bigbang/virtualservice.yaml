@@ -1,5 +1,5 @@
 {{- $pkg := "podinfo" }}
-{{- if and .Values.istio.enabled (get .Values.istio $pkg).enabled }}
+{{- if .Values.istio.enabled }}
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
