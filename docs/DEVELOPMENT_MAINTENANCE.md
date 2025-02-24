@@ -22,17 +22,14 @@ BigBang makes modifications to the upstream helm chart. The full list of changes
 
 ## Big Bang considerations
 
-When deploying with kyverno you will need to add these to your overrides:
+### Automated deployment without credentials overrides
+
+When deploying you will need to add these to your overrides file called `overrides.yaml`:
 
 ```yaml
-monitoring:
+istio:
   enabled: true
-
-kyverno:
-  enabled: true
-
-addons:
-  argocd: 
+  hardened:
     enabled: true
 
 packages:
@@ -43,7 +40,7 @@ packages:
       repo: https://repo1.dso.mil/big-bang/apps/sandbox/podinfo.git
       path: chart
       tag: null
-      branch: your-branch-name # add your branch name here after you publish it
+      branch: main # add your branch name here after you publish it
     flux:
       timeout: 5m
     postRenderers: []
@@ -53,13 +50,14 @@ packages:
       - name: monitoring
         namespace: bigbang
     values:
-      autogensecrets: 
-        enabled: true
       replicaCount: 3
       istio:
+        enabled: true
         hardened:
           enabled: true
 ```
+
+- deploy podinfo
 
 ```bash
 # Run the following command to install:
@@ -71,34 +69,45 @@ export KUBECONFIG=~/.kube/$(aws sts get-caller-identity --query "Arn" --output t
     --set registryCredentials.password="${REGISTRY1_PASSWORD}" \
     -f ./docs/assets/configs/example/policy-overrides-k3d.yaml \
     -f ./chart/ingress-certs.yaml \
-    -f /your/podinfo/override/file/location/override.yaml
+    -f /your/podinfo/override/file/location/overrides.yaml
 ```
 
-- Kyverno is a hard requirements for testing, because kyverno will be needed for policy replication
-- ArgoCD is a soft requirements, if not present then make sure to specify in an additional override file the following values:
+- This method uses flux to generate the private-registry secret. Istio is enabled to have VS (virtualservices) deployed and have a way to reach podinfo.
+
+### Automated deployment without flux
+
+- Set up an overrides.yaml file with the following values:
 
 ```yaml
+replicaCount: 3
 privateRegistrySecret: true
 privateRegistry: "registry1.dso.mil"
 privateRegistryUsername: "your_harbor_username"
 privateRegistryPassword: "your_harbor_password"
 privateRegistryEmail: "help@dsop.io"
 privateRegistrySecretName: "private-registry"
+autogensecrets: 
+  enabled: false
 ```
+- Deploy podInfo
 
 ```bash
 # Run the following command to install:
 ./docs/assets/scripts/developer/k3d-dev.sh
 export KUBECONFIG=~/.kube/$(aws sts get-caller-identity --query "Arn" --output text | cut -d '/' -f2)-dev-default-config
-./scripts/install_flux.sh -u $REGISTRY1_USER -p $REGISTRY1_PASSWORD
-    helm upgrade -i bigbang chart/ -n bigbang --create-namespace \
-    --set registryCredentials.username=${REGISTRY1_USER} \
-    --set registryCredentials.password="${REGISTRY1_PASSWORD}" \
-    -f ./docs/assets/configs/example/policy-overrides-k3d.yaml \
-    -f ./chart/ingress-certs.yaml \
-    -f /your/podinfo/override/file/location/override.yaml \
-    -f /your/podinfo/credentials/file/location/credentials.yaml
+helm upgrade -i bigbang chart/ -n bigbang --create-namespace \
+    -f /your/podinfo/override/file/location/overrides.yaml \
 ```
+
+- This method won't deploy a Virtual Service, PortForwarding need to be used to connect to podinfo 
+
+### Deployment in pipeline and release tests
+
+For the pipeline and bigbang release tests the following packages are mandatory: istio, argocd, kyverno
+
+See [test_values.yaml](../tests/test-values.yml), that shows what is required to deploy in a pipeline and/or in the release tests.
+
+The reason for the hard requirement of kyverno and argocd is because kyverno will set up a policy to clone the private-registry secret from argocd (podinfo is a requirement for the argocd test), and the policy will copy the private registry from argocd naspace to podinfo namespace.
 
 ### Testing
 
@@ -111,17 +120,24 @@ helm test -n podinfo podinfo
 You will need to add these to your overrides to run tests when using kyverno:
 
 ```yaml
+addons:
+  argocd: 
+    enabled: true
+
+istio:
+  enabled: true
+  hardened:
+    enabled: true
+
+monitoring:
+  enabled: true
+
+kyverno:
+  enabled: true
+
 kyvernoPolicies:
   values:
     policies:
-      restrict-image-registries:
-        exclude:
-          any:
-            - resources:
-                namespaces:
-                  - podinfo
-                names:
-                  - podinfo*
       restrict-host-path-mount:
         exclude:
           any:

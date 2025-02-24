@@ -3,6 +3,13 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.7.1-bb.6] - 2025-02-21
+
+### Changed
+
+- fix deployment readme
+- fix virtual service deployment
+
 ## [6.7.1-bb.5] - 2025-02-21
 
 ### Changed
