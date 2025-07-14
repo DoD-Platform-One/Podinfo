@@ -1,5 +1,5 @@
 {{- $pkg := "podinfo" }}
-{{- if .Values.istio.enabled }}
+{{- if .Values.istiod.enabled }}
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
@@ -10,11 +10,11 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   gateways:
-  {{- range (get .Values.istio $pkg).gateways }}
+  {{- range (get .Values.istiod $pkg).gateways }}
     - {{ . }}
   {{- end }}
   hosts:
-  {{- range (get .Values.istio $pkg).hosts }}
+  {{- range (get .Values.istiod $pkg).hosts }}
     - {{ tpl . $}}
   {{- end }}
   http:

@@ -1,7 +1,7 @@
 apiVersion: v2
 icon: https://kubernetes.io/icons/icon-128x128.png
-version: 6.7.1-bb.6
-appVersion: 6.7.1
+version: 6.9.0-bb.0
+appVersion: 6.9.0
 name: podinfo
 engine: gotpl
 description: Podinfo Helm chart for Kubernetes
@@ -14,7 +14,7 @@ sources:
 kubeVersion: ">=1.23.0-0"
 dependencies:
 - name: gluon
-  version: "0.5.14"
+  version: "0.6.3"
   repository: "oci://registry1.dso.mil/bigbang"
 annotations: 
   bigbang.dev/maintenanceTrack: bb_maintainted

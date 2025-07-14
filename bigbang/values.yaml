@@ -20,15 +20,11 @@ podinfo:
 # Toggle for network polocies
 networkPolicies:
   enabled: false
-
-# Toggle for Bigbang Core packages set true to install
-jaeger:
+  
+bbctl: 
   enabled: false
 
 kiali:
-  enabled: false
-
-clusterAuditor:
   enabled: false
 
 gatekeeper:
@@ -48,6 +44,7 @@ grafana:
 
 neuvector:
   enabled: false
+
 tempo:
   enabled: false
 

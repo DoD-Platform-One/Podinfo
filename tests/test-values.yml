@@ -1,7 +1,13 @@
-istio:
+istioGateway:
   enabled: true
   hardened:
     enabled: true
+
+istiod:
+  enabled: true
+
+istioCRDs:
+  enabled: true
 
 bbtests:
   enabled: true

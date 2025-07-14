@@ -8,7 +8,7 @@ backends: []
 
 image:
   repository: registry1.dso.mil/ironbank/opensource/bigbang/podinfo
-  tag: 6.7.1
+  tag: 6.9.0
   pullPolicy: IfNotPresent
 
 ui:
@@ -210,7 +210,7 @@ probes:
 
 # Big Bang Values
 domain: dev.bigbang.mil
-istio:
+istiod:
   enabled: false
   podinfo:
     enabled: true

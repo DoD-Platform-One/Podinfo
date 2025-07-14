@@ -3,8 +3,8 @@
 {{- define "bigbang.defaults.podinfo" -}}
 # hostname is deprecated and replaced with domain. But if hostname exists then use it.
 domain: {{ default .Values.domain .Values.hostname }}
-istio:
-  enabled: {{ .Values.istio.enabled }}
+istioGateway:
+  enabled: {{ .Values.istioGateway.enabled }}
   podinfo:
     gateways:
     - istio-system/{{ default "public" .Values.podinfo.ingress.gateway }}
