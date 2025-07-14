@@ -27,7 +27,7 @@ BigBang makes modifications to the upstream helm chart. The full list of changes
 When deploying you will need to add these to your overrides file called `overrides.yaml`:
 
 ```yaml
-istio:
+istiod:
   enabled: true
   hardened:
     enabled: true
@@ -51,7 +51,7 @@ packages:
         namespace: bigbang
     values:
       replicaCount: 3
-      istio:
+      istiod:
         enabled: true
         hardened:
           enabled: true
@@ -226,7 +226,7 @@ kyvernoPolicies:
 - Removed because it always fails
 
 ### `chart/templates/tests/script-test.yaml`
-- Added
+- removed because it always fails 
 
 ### `chart/templates/tests/service.yaml`
 - Removed because it always fails

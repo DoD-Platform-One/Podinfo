@@ -1,5 +1,5 @@
 {{- $pkg := "podinfo" }}
-{{- if and .Values.istio.enabled (get .Values.istio $pkg).enabled }}
+{{- if and .Values.istiod.enabled (get .Values.istiod $pkg).enabled }}
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:

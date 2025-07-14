@@ -79,7 +79,7 @@ The following tables lists the configurable parameters of the podinfo chart and 
 | `service.grpcService`             | `podinfo`              | gPRC service name                                                                                                      |
 | `service.nodePort`                | `31198`                | NodePort for the HTTP endpoint                                                                                         |
 | `h2c.enabled`                     | `false`                | Allow upgrading to h2c (non-TLS version of HTTP/2)                                                                     |
-| `extraEnvs`                       | `[]`                   | Extra environment variables for the podinfo container |
+| `extraEnvs`                       | `[]`                   | Extra environment variables for the podinfo container                                                                  |
 | `config.path`                     | `""`                   | config file path                                                                                                       |
 | `config.name`                     | `""`                   | config file name                                                                                                       |
 | `extraArgs`                       | `[]`                   | Additional command line arguments to pass to podinfo container                                                         |
@@ -98,7 +98,7 @@ The following tables lists the configurable parameters of the podinfo chart and 
 | `serviceMonitor.interval`         | `15s`                  | Prometheus scraping interval                                                                                           |
 | `serviceMonitor.additionalLabels` | `{}`                   | Add additional labels to the service monitor                                                                           |
 | `ingress.enabled`                 | `false`                | Enables Ingress                                                                                                        |
-| `ingress.className `              | `""`                   | Use ingressClassName                                                                                                   |
+| `ingress.className`               | `""`                    | Use ingressClassName                                                                                                  |
 | `ingress.additionalLabels`        | `{}`                   | Add additional labels to the ingress                                                                                   |
 | `ingress.annotations`             | `{}`                   | Ingress annotations                                                                                                    |
 | `ingress.hosts`                   | `[]`                   | Ingress accepted hosts                                                                                                 |
