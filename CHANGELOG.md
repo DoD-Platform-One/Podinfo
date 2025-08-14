@@ -3,6 +3,13 @@
 > Format: [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 
 ---
+## [6.9.1-bb.0] - 2025-08-11
+
+### Changed
+
+- Updated chart from upstream 6.9.0 to 6.9.1
+- Updated gluon from 0.6.3 to 0.7.0
+
 ## [6.9.0-bb.0] - 2025-07-02
 
 ### Changed

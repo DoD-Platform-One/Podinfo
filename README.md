@@ -1,7 +1,7 @@
 <!-- Warning: Do not manually edit this file. See notes on gluon + helm-docs at the end of this file for more information. -->
 # podinfo
 
-![Version: 6.9.0-bb.0](https://img.shields.io/badge/Version-6.9.0--bb.0-informational?style=flat-square) ![AppVersion: 6.9.0](https://img.shields.io/badge/AppVersion-6.9.0-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
+![Version: 6.9.1-bb.0](https://img.shields.io/badge/Version-6.9.1--bb.0-informational?style=flat-square) ![AppVersion: 6.9.1](https://img.shields.io/badge/AppVersion-6.9.1-informational?style=flat-square) ![Maintenance Track: bb_maintainted](https://img.shields.io/badge/Maintenance_Track-bb_maintainted-red?style=flat-square)
 
 Podinfo Helm chart for Kubernetes
 
@@ -57,7 +57,7 @@ helm install podinfo chart/
 | backend | string | `nil` |  |
 | backends | list | `[]` |  |
 | image.repository | string | `"registry1.dso.mil/ironbank/opensource/bigbang/podinfo"` |  |
-| image.tag | string | `"6.9.0"` |  |
+| image.tag | string | `"6.9.1"` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | ui.color | string | `"#34577c"` |  |
 | ui.message | string | `""` |  |

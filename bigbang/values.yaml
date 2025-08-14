@@ -48,7 +48,7 @@ neuvector:
 tempo:
   enabled: false
 
-promtail:
+alloy:
   enabled: false
 
 loki:
