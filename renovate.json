@@ -1,23 +1,38 @@
 {
-    "baseBranches": ["main"],
+    "baseBranches": [
+        "main"
+    ],
     "configWarningReuseIssue": false,
     "dependencyDashboard": true,
     "dependencyDashboardHeader": "- [ ] Sync upstream helm chart version with updated dependencies.",
     "dependencyDashboardTitle": "Renovate: Upgrade Podinfo Dependencies",
     "draftPR": true,
-    "enabledManagers": ["regex", "helmv3"],
-    "labels": ["kind::maintenance", "team::Tools & Automation"],
+    "enabledManagers": [
+        "custom.regex",
+        "helmv3"
+    ],
+    "labels": [
+        "kind::maintenance",
+        "team::Tools & Automation"
+    ],
     "commitMessagePrefix": "SKIP UPDATE CHECK",
     "packageRules": [
         {
-            "matchDatasources": ["docker"],
+            "matchDatasources": [
+                "docker"
+            ],
             "groupName": "Ironbank",
-            "registryUrls": ["https://registry1.dso.mil"]
+            "registryUrls": [
+                "https://registry1.dso.mil"
+            ]
         }
     ],
-    "regexManagers": [
+    "customManagers": [
         {
-            "fileMatch": ["^chart/values\\.yaml$"],
+            "customType": "regex",
+            "fileMatch": [
+                "^chart/values\\.yaml$"
+            ],
             "matchStrings": [
                 "scripts:\\s+image:\\s+(?<depName>.+):(?<currentValue>RELEASE\\..+Z)",
                 "image:\\s+name:\\s+[^/]+/(?<depName>.+)\\s+tag:\\s+(?<currentValue>RELEASE\\..+Z)",
@@ -27,7 +42,10 @@
             "versioningTemplate": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z$"
         },
         {
-            "fileMatch": ["^chart/Chart\\.yaml$"],
+            "customType": "regex",
+            "fileMatch": [
+                "^chart/Chart\\.yaml$"
+            ],
             "matchStrings": [
                 "- Minio:\\s+(?<currentValue>.+)",
                 "appVersion:\\s+(?<currentValue>.+)"
@@ -37,7 +55,10 @@
             "versioningTemplate": "regex:^RELEASE\\.(?<major>\\d+)-(?<minor>\\d+)-(?<patch>\\d+)T.*Z$"
         },
         {
-            "fileMatch": ["^chart/Chart\\.yaml$"],
+            "customType": "regex",
+            "fileMatch": [
+                "^chart/Chart\\.yaml$"
+            ],
             "matchStrings": [
                 "image:[^\\S\\r\\n]+(?<depName>.+):(?<currentValue>.+)"
             ],
