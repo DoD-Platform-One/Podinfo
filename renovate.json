@@ -2,6 +2,7 @@
     "baseBranches": [
         "main"
     ],
+    "branchName": "renovate/ironbank",
     "configWarningReuseIssue": false,
     "dependencyDashboard": true,
     "dependencyDashboardHeader": "- [ ] Sync upstream helm chart version with updated dependencies.",
